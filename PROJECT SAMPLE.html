@@ -168,7 +168,6 @@
                 <button onclick="showCategory('desserts')">Desserts</button>
                 <button onclick="showCategory('drinks')">Drinks</button>
                 <button onclick="showCategory('all')">Show All</button>
-		<button onclick="logout()">Logout</button>
             </nav>
         </header>
 		<div class="image-grid">
@@ -561,10 +560,6 @@
             } else {
                 alert("Invalid credentials!");
             }
-        }
-       function logout() {
-            localStorage.removeItem("loggedInUser");
-            window.location.href = "new 14.html"; // Redirect back to login page
         }
     </script>
 </body>
