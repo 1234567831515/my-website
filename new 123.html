@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { width: 300px; margin: 100px auto; }
+        input { width: 100%; padding: 8px; margin: 5px 0; }
+        button { width: 100%; padding: 10px; background: #28a745; color: white; border: none; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginPage">
+        <h2>Login</h2>
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p>Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
+    </div>
+
+    <div class="container hidden" id="registerPage">
+        <h2>Register</h2>
+        <input type="text" id="regUser" placeholder="Username">
+        <input type="password" id="regPass" placeholder="Password">
+        <button onclick="register()">Register</button>
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+    </div>
+
+    <script>
+        function showRegister() {
+            document.getElementById("loginPage").classList.add("hidden");
+            document.getElementById("registerPage").classList.remove("hidden");
+        }
+        function showLogin() {
+            document.getElementById("registerPage").classList.add("hidden");
+            document.getElementById("loginPage").classList.remove("hidden");
+        }
+        function register() {
+            let user = document.getElementById("regUser").value;
+            let pass = document.getElementById("regPass").value;
+            if (user && pass) {
+                localStorage.setItem(user, pass);
+                alert("Registration Successful! Please login.");
+                showLogin();
+            } else {
+                alert("Please fill all fields.");
+            }
+        }
+        function login() {
+            let user = document.getElementById("loginUser").value;
+            let pass = document.getElementById("loginPass").value;
+            if (localStorage.getItem(user) === pass) {
+                localStorage.setItem("loggedInUser", user);
+                window.location.href = "PROJECT SAMPLE.html"; // Redirect to menu page
+            } else {
+                alert("Invalid credentials!");
+            }
+        }
+    </script>
+</body>
+</html>
